@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    echo "<div class='bg-sky-50'>Hello!</div>";
-});
+Route::get('/', [MainController::class, 'home'])->name('home');
+Route::post('/generate', [MainController::class, 'generateExercises'])->name('generateExercises');
+Route::get('/print', [MainController::class, 'printExercises'])->name('printExercises');
+Route::get('/export', [MainController::class, 'exportExercises'])->name('exportExercises');
+
