@@ -24,7 +24,7 @@
     <!-- form -->
     <form action="{{ route('generateExercises') }}" method="post" class="px-4">
         @csrf
-        <div class="max-w-6xl mx-auto border border-blue-500 rounded-xl p-6 md:p-10">
+        <div class="container mx-auto border border-blue-500 rounded-xl p-6 md:p-10">
 
             <div class="flex flex-col md:flex-row md:justify-between gap-10">
 
@@ -102,9 +102,30 @@
         </div>
     </form>
 
+    @if ($errors->any())
+        <div class="container mx-auto mt-3">
+            <div class="flex p-4 mb-4 text-sm text-red-400 rounded-lg bg-gray-800" role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                  <span class="font-medium">Garantir que estes requisitos sejam cumpridos:</span>
+                    <ul class="mt-1.5 list-disc list-inside">
+                      <li>Selecione pelo menos uma operação.</li>
+                      <li>As parcelas devem ser números entre 0 e 999.</li>
+                      <li>O número de exercícios deve variar entre 5 e 50.</li>
+                  </ul>
+                </div>
+              </div>
+        </div>
+        <div class="max-w-6xl mx-auto md:p-10">
+        </div>
+    @endif
+
     <!-- footer -->
     <footer class="text-center mt-10 text-sm text-gray-500">
-        <p>MathX &copy; <span class="text-blue-500">[ANO]</span></p>
+        <p>MathX &copy; <span class="text-blue-500">{{ date('Y') }}</span></p>
     </footer>
 
 </body>
